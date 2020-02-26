@@ -1,3 +1,5 @@
+from doubly_linked_list import DoublyLinkedList
+
 class LRUCache:
     """
     Our LRUCache class keeps track of the max number of nodes it
@@ -7,7 +9,11 @@ class LRUCache:
     to every node stored in the cache.
     """
     def __init__(self, limit=10):
-        pass
+        self.limit = limit
+        self.size = 0
+        self.storage = dict()
+        self.order = DoublyLinkedList()
+        
 
     """
     Retrieves the value associated with the given key. Also
@@ -17,7 +23,12 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        pass
+        if key in self.storage:
+            node = self.storage[key]
+            self.order.move_to_end(node)
+            return node.value[1]
+        else:
+            return None
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -30,4 +41,41 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        #  Check and see if the key is in the dict
+        if key in self.storage:
+            # If it is
+            node = self.storage[key]
+            # Overwrite the value
+            node.value = (key, value)
+            # Move it to the end. It is upto us to decide if the head or tail is considered the most recently used.
+            # In this case we are considering the tail to be most recently used.
+            self.order.move_to_end(node)
+            return 
+
+        # If it isn't
+        # Check and see if cache is full
+        # If cache is full
+        if self.size == self.limit:
+            # Remove oldest entry from dict 
+            del self.storage[self.order.head.value[0]]
+            # Remove oldest entry from DLL
+            self.order.remove_from_head()
+            # Reduce the size
+            self.size -= 1
+        
+        # If the cache is empty:
+        # Add to the linked list(key and the value)
+        self.order.add_to_tail((key, value))
+        # Add the key and value to the dictionary
+        self.storage[key] = self.order.tail
+        # Increment size
+        self.size += 1
+
+
+# lru = LRUCache(3)
+# lru.set('item1', 'a')
+# print(lru.storage)
+# print(lru.order.head.value)
+# print(lru.order.head.next)
+# print(lru.order.head.prev)
+
