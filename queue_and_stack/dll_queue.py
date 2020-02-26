@@ -19,6 +19,8 @@ class Queue:
     def len(self):
         return self.storage.length
 
+# The runtime complexity for removing items from an array is 0(n) while the runtime complexity for removing item from linked list is 0(1)       
+
 # a = Queue()
 # print(a.size)
 # print(a.storage)

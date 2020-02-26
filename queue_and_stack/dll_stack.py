@@ -17,3 +17,5 @@ class Stack:
 
     def len(self):
         return self.storage.length
+
+# There is no specific advantage for using DLL as the underlying data structure of stacks over an array

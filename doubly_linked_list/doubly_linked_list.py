@@ -136,7 +136,7 @@ class DoublyLinkedList:
                 self.head = self.head.next
             return max
 
-node1 = ListNode(3)
-dll1 = DoublyLinkedList(node1)
-dll1.add_to_tail(4)
-dll1.add_to_tail(5)
+# node1 = ListNode(3)
+# dll1 = DoublyLinkedList(node1)
+# dll1.add_to_tail(4)
+# dll1.add_to_tail(5)
