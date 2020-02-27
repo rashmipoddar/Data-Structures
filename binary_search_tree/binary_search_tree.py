@@ -111,11 +111,8 @@ class BinarySearchTree:
     def post_order_dft(self, node):
         pass
 
-tree = BinarySearchTree(5)
-tree.insert(2)
-tree.insert(3)
-tree.insert(7)
+# tree = BinarySearchTree(5)
+# tree.insert(2)
+# tree.insert(3)
+# tree.insert(7)
 # print('The result of contains', tree.contains(7))
-def cb(value):
-    print('In every node')
-tree.for_each(cb)
