@@ -91,17 +91,55 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node.left:
+            self.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            self.in_order_print(node.right)
+        
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # initialize a queue
+        q = Queue()
+        # push root to queue
+        q.enqueue(node)
+        # while queue not empty
+        while q.len() != 0:
+            # pop top item out of queue into temp
+            temp = q.dequeue()
+            # DO THE THING!!!!!!
+            print(f'{temp.value}')
+            # if temp has left left put into queue
+            if temp.left:
+                q.enqueue(temp.left)
+            # if temp has right right put into queue
+            if temp.right:
+                q.enqueue(temp.right)
+            
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # initialize a stack
+        stack = Stack()
+        # push root to stack
+        stack.push(node)
+        # while stack not empty
+        while stack.len() != 0:    
+            # pop top item out of stack into temp
+            temp = stack.pop()
+            # DO THE THING!!!!!!
+            print(f'{temp.value}')
+            # if temp has right 
+            if temp.right:
+                # put right into stack
+                stack.push(temp.right)
+            # if temp has left
+            if temp.left:
+                # left put into stack
+                stack.push(temp.left)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
@@ -114,11 +152,19 @@ class BinarySearchTree:
     def post_order_dft(self, node):
         pass
 
-# tree = BinarySearchTree(5)
-# tree.insert(2)
-# tree.insert(3)
-# tree.insert(7)
+tree = BinarySearchTree(1)
+tree.insert(8)
+tree.insert(5)
+tree.insert(7)
+tree.insert(6)
+tree.insert(3)
+tree.insert(4)
+tree.insert(2)
 # print('The result of contains', tree.contains(7))
 # def cb(value):
-#     print(f'The value is {value}')
+    # print(f'The value is {value}')
 # tree.for_each(cb)
+# tree.in_order_print(tree)
+# tree.bft_print(tree)
+# tree.dft_print(tree)
+# tree.in_order_print(tree)
